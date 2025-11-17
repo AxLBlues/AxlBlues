@@ -1,16 +1,9 @@
-<html>
-
-<head>
-<title>AXLBLUES.COM</title>
-</head>
-
-<p>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Axl Blues</title>
+  <title>AXLBLUES.COM</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -29,7 +22,7 @@
     }
 
     header h1 {
-      font-size: 2.4rem; /* large title */
+      font-size: 2.4rem;
       font-weight: 900;
       color: #1e90ff; /* bright blue */
     }
@@ -40,21 +33,17 @@
       gap: 24px;
     }
 
-    nav ul li {
-      position: relative;
-    }
+    nav ul li { position: relative; }
 
     nav a {
       text-decoration: none;
       color: #fff;
-      font-size: 1.4rem; /* larger font for readability */
+      font-size: 1.4rem;
       padding: 8px 10px;
       transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: #1e90ff;
-    }
+    nav a:hover { color: #1e90ff; }
 
     /* Dropdown styling */
     nav ul li ul {
@@ -68,106 +57,99 @@
       border-radius: 4px;
     }
 
-    nav ul li ul li {
-      width: 100%;
-    }
+    nav ul li ul li { width: 100%; }
 
     nav ul li ul a {
       display: block;
       padding: 10px 14px;
-      font-size: 1.3rem; /* larger dropdown text */
+      font-size: 1.3rem;
     }
 
-    nav ul li:hover ul {
-      display: block;
-    }
+    nav ul li:hover ul { display: block; }
 
-
-<p>
-
-
-<body bgcolor="black" link="white" vlink="white">
-<center>
-
-<img src="AxlBluesTitle.jpg" width="980">
-
-<p>
-
-<video width="1000" height="1000" controls><source src="title.mp4" type="video/mp4">Your browser does not support the video tag.</video>
-
-<p>
-
-<section class="bio-short" aria-labelledby="bio-short-title">
-  <style>
+    /* Bio section */
     .bio-short {
       max-width: 800px;
-      margin: 0 auto;
+      margin: 40px auto;
       padding: 24px;
       line-height: 1.8;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: #000000; /* black background */
-      color: #ffffff; /* white text */
+      background: #000;
+      color: #fff;
     }
     .bio-short h2 {
       margin: 0 0 20px;
-      font-size: 2.6rem; /* larger title */
+      font-size: 2.6rem;
       font-weight: 900;
       letter-spacing: 0.5px;
-      color: #1e90ff; /* bright blue */
+      color: #1e90ff;
       text-align: center;
     }
     .bio-short .sub {
       margin: 0 0 22px;
-      font-size: 1.4rem; /* larger subtitle */
+      font-size: 1.4rem;
       font-weight: 600;
-      color: #cccccc; /* light gray */
+      color: #cccccc;
       text-align: center;
     }
     .bio-short p {
       margin: 0 0 18px;
-      font-size: 1.3rem; /* larger body text */
+      font-size: 1.3rem;
     }
     @media (max-width: 480px) {
-      .bio-short { padding: 20px; }
-      .bio-short h2 { font-size: 2.8rem; } /* extra large on mobile */
-      .bio-short .sub { font-size: 1.5rem; }
-      .bio-short p { font-size: 1.4rem; } /* big enough for easy reading */
+      header h1 { font-size: 2rem; }
+      nav a { font-size: 1.2rem; }
+      .bio-short h2 { font-size: 2.2rem; }
+      .bio-short p { font-size: 1.2rem; }
     }
   </style>
+</head>
+<body>
 
-  <h2 id="bio-short-title">Honing the Act</h2>
-  <p class="sub">Axl Blues — Harmonica player, vocalist, performer</p>
+  <header>
+    <h1>Axl Blues</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li>
+          <a href="#">About ▾</a>
+          <ul>
+            <li><a href="short-bio.html">Short Bio</a></li>
+            <li><a href="long-bio.html">Long Bio</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+          </ul>
+        </li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <p>
-    Axl Blues is a harmonica player, vocalist, and performer whose journey into the blues began in 1997, jamming scales on guitar.
-    Inspired by The Blues Brothers in 2002, he brought his act to karaoke stages in Seattle, developing his persona and passion for live performance.
-    In 2015, he met Dan Aykroyd and committed fully to the blues, adding harmonica to his repertoire and shaping his identity as a modern bluesman.
-  </p>
+  <main style="text-align:center; margin-top:20px;">
+    <img src="AxlBluesTitle.jpg" width="980" alt="Axl Blues Title">
 
-  <p>
-    Performing across the USA, Axl has shared stages and even microphones with legendary musicians including Bobby Rush and Charlie Musselwhite, as well as
-    Bonnie Raitt’s former guitarist, Little Richard’s late-career guitarist, and Percy Sledge’s son. His performances have spanned festivals, blues jams,
-    and venues nationwide.
-  </p>
+    <video width="800" controls style="margin-top:20px;">
+      <source src="title.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
-  <p>
-    In 2025, Axl legally adopted his stage name, solidifying his identity as a blues artist dedicated to carrying forward the spirit of the music that first
-    captured him back in 1997.
-  </p>
-</section>
+    <section class="bio-short" aria-labelledby="bio-short-title">
+      <h2 id="bio-short-title">Honing the Act</h2>
+      <p class="sub">Axl Blues — Harmonica player, vocalist, performer</p>
 
+      <p>Axl Blues is a harmonica player, vocalist, and performer whose journey into the blues began in 1997, jamming scales on guitar. Inspired by The Blues Brothers in 2002, he brought his act to karaoke stages in Seattle, developing his persona and passion for live performance. In 2015, he met Dan Aykroyd and committed fully to the blues, adding harmonica to his repertoire and shaping his identity as a modern bluesman.</p>
 
-<p>
+      <p>Performing across the USA, Axl has shared stages and even microphones with legendary musicians including Bobby Rush and Charlie Musselwhite, as well as Bonnie Raitt’s former guitarist, Little Richard’s late-career guitarist, and Percy Sledge’s son. His performances have spanned festivals, blues jams, and venues nationwide.</p>
 
-<a href="https://thebluestruckers.com"><img src="https://thebluestruckers.com/black-truck.png" height="200"></a>
+      <p>In 2025, Axl legally adopted his stage name, solidifying his identity as a blues artist dedicated to carrying forward the spirit of the music that first captured him back in 1997.</p>
+    </section>
 
-<a href="https://stardrivepaintings.com"><img src="http://stardrivepaintings.com/FullStardriveLogo.png" height="200"></a>
+<div style="margin-top:30px;">
+      <a href="https://thebluestruckers.com"><img src="https://thebluestruckers.com/black-truck.png" height="200" alt="Blues Truckers"></a>
+      <a href="https://stardrivepaintings.com"><img src="http://stardrivepaintings.com/FullStardriveLogo.png" height="200" alt="Stardrive Paintings"></a>
+      <a href="https://www.facebook.com/Drewdrive72" target="_blank"><img src="fbincon.png" height="200" alt="Facebook Icon"></a>
+    </div>
+  </main>
 
-<a href="https://www.facebook.com/Drewdrive72" target="_new"><img src="fbincon.png" height="200"></a>
-
-<p>
-
-</center>
 </body>
-
 </html>
