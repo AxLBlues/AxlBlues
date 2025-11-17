@@ -14,7 +14,7 @@
       background: #111;
       padding: 18px 24px;
       display: flex;
-      flex-direction: column; /* title above menu */
+      flex-direction: column;
       align-items: center;
       gap: 10px;
     }
@@ -30,7 +30,7 @@
     /* Top navigation on one line */
     nav {
       width: 100%;
-      max-width: 1000px; /* keeps menu centered visually */
+      max-width: 1000px;
     }
     nav ul {
       list-style: none;
@@ -38,27 +38,23 @@
       padding: 0;
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;        /* force one line */
+      flex-wrap: nowrap;
       gap: 16px;
       justify-content: center;
       align-items: center;
-      overflow-x: auto;          /* allow horizontal scroll if too wide */
+      overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
     nav ul li { position: relative; }
-    nav a, nav button.menu-trigger {
+    nav a {
       text-decoration: none;
       color: #fff;
       font-size: 1.2rem;
       padding: 6px 8px;
       transition: color 0.3s;
       white-space: nowrap;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font: inherit;
     }
-    nav a:hover, nav button.menu-trigger:hover { color: #1e90ff; }
+    nav a:hover { color: #1e90ff; }
 
     /* Dropdown submenu */
     nav ul li ul {
@@ -125,15 +121,15 @@
       max-width: 1000px;
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;          /* force one line */
+      flex-wrap: nowrap;
       justify-content: center;
       align-items: center;
       gap: 16px;
-      overflow-x: auto;           /* scroll if they don’t fit */
+      overflow-x: auto;
       -webkit-overflow-scrolling: touch;
     }
     .link-images img {
-      height: 120px;              /* equal height */
+      height: 120px;
       width: auto;
       display: block;
     }
@@ -141,7 +137,7 @@
     /* Mobile tweaks */
     @media (max-width: 600px) {
       header h1 { font-size: 2rem; }
-      nav a, nav button.menu-trigger { font-size: 1rem; padding: 6px 6px; }
+      nav a { font-size: 1rem; padding: 6px 6px; }
       .bio-short h2 { font-size: 2.2rem; }
       .bio-short p { font-size: 1.2rem; }
       .link-images img { height: 90px; }
@@ -156,8 +152,8 @@
       <ul>
         <li><a href="index.html">Home</a></li>
 
-        <li>
-          <button class="menu-trigger" aria-haspopup="true" aria-expanded="false">About ▾</button>
+        <li class="has-submenu">
+          <a href="#" class="submenu-trigger">About ▾</a>
           <ul>
             <li><a href="short-bio.html">Short Bio</a></li>
             <li><a href="long-bio.html">Long Bio</a></li>
@@ -206,22 +202,20 @@
   </main>
 
   <script>
-    // Tap/Click toggle for the About dropdown (robust on phones)
-    const trigger = document.querySelector('button.menu-trigger');
-    const parentLi = trigger.parentElement;
-
-    trigger.addEventListener('click', function (e) {
-      e.preventDefault();
-      const isOpen = parentLi.classList.toggle('open');
-      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    // Tap/Click toggle for the About dropdown
+    document.querySelectorAll('.submenu-trigger').forEach(trigger => {
+      trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parent = this.parentElement;
+        parent.classList.toggle('open');
+      });
     });
 
     // Close submenu when clicking/tapping outside
-    document.addEventListener('click', function (e) {
-      if (!parentLi.contains(e.target)) {
-        parentLi.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      }
+    document.addEventListener('click', function(e) {
+      document.querySelectorAll('.has-submenu').forEach(li => {
+        if (!li.contains(e.target)) li.classList.remove('open');
+      });
     });
   </script>
 </body>
