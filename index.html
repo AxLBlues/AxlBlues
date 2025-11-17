@@ -34,14 +34,13 @@
       list-style: none;
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;
+      flex-wrap: nowrap;      /* keep on one line */
       gap: 16px;
+      align-items: center;
     }
     nav ul li { position: relative; }
 
-    /* Links and button triggers look identical */
-    nav a,
-    nav button.menu-trigger {
+    nav a, nav button.menu-trigger {
       text-decoration: none;
       color: #fff;
       font-size: 1.2rem;
@@ -53,29 +52,29 @@
       cursor: pointer;
       font: inherit;
     }
-    nav a:hover,
-    nav button.menu-trigger:hover {
-      color: #1e90ff;
-    }
+    nav a:hover, nav button.menu-trigger:hover { color: #1e90ff; }
 
-    /* Dropdown */
+    /* Dropdown menu */
     nav ul li ul {
       display: none;
       position: absolute;
       top: 100%;
       left: 0;
       background: #222;
-      padding: 12px 0;
+      padding: 8px 0;
       min-width: 200px;
       border-radius: 4px;
-      z-index: 10;
+      z-index: 20;
     }
-
-    /* Open dropdown on hover (desktop) and focus-within (mobile tap) */
-    nav ul li:hover > ul,
-    nav ul li:focus-within > ul {
+    nav ul li ul li a {
       display: block;
+      padding: 8px 12px;
+      font-size: 1.1rem;
+      color: #fff;
+      white-space: nowrap;
     }
+    /* Show on desktop hover */
+    nav ul li:hover > ul { display: block; }
 
     /* Responsive media */
     img, video {
@@ -112,11 +111,11 @@
       font-size: 1.3rem;
     }
 
-    /* Footer link images in one line, equal height */
+    /* Footer link images on one line, equal height */
     .link-images {
       text-align: center;
       margin: 30px auto;
-      white-space: nowrap; /* keep on one line */
+      white-space: nowrap;
     }
     .link-images img {
       height: 120px;
@@ -128,22 +127,21 @@
 
     /* Mobile adjustments */
     @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-      }
+      header { flex-direction: column; align-items: center; }
       nav ul {
         flex-direction: row;
         flex-wrap: nowrap;
-        overflow-x: auto;   /* allow horizontal scroll if needed */
+        overflow-x: auto;      /* scroll if too wide */
         -webkit-overflow-scrolling: touch;
       }
-      nav a,
-      nav button.menu-trigger { font-size: 1rem; }
+      nav a, nav button.menu-trigger { font-size: 1rem; }
       .bio-short h2 { font-size: 2.2rem; }
       .bio-short p { font-size: 1.2rem; }
       .link-images img { height: 90px; }
     }
+
+    /* Utility class: open submenu via JS */
+    .open > ul { display: block; }
   </style>
 </head>
 <body>
@@ -155,7 +153,7 @@
       <ul>
         <li><a href="index.html">Home</a></li>
 
-        <!-- Button trigger for dropdown so focus-within works on phones -->
+        <!-- Dropdown trigger -->
         <li>
           <button class="menu-trigger" aria-haspopup="true" aria-expanded="false">About ▾</button>
           <ul>
@@ -207,5 +205,24 @@
     </div>
   </main>
 
+  <!-- Tap-to-open dropdown for mobile -->
+  <script>
+    // Toggle the About submenu on tap/click
+    const trigger = document.querySelector('button.menu-trigger');
+    const parentLi = trigger.parentElement;
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      const isOpen = parentLi.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close if tapping elsewhere (optional, lightweight)
+    document.addEventListener('click', function (e) {
+      if (!parentLi.contains(e.target)) {
+        parentLi.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
 </body>
 </html>
