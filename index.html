@@ -34,7 +34,7 @@
       list-style: none;
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;      /* keep on one line */
+      flex-wrap: nowrap;
       gap: 16px;
       align-items: center;
     }
@@ -111,7 +111,7 @@
       font-size: 1.3rem;
     }
 
-    /* Footer link images on one line, equal height */
+    /* Footer link images */
     .link-images {
       text-align: center;
       margin: 30px auto;
@@ -131,7 +131,7 @@
       nav ul {
         flex-direction: row;
         flex-wrap: nowrap;
-        overflow-x: auto;      /* scroll if too wide */
+        overflow-x: auto;
         -webkit-overflow-scrolling: touch;
       }
       nav a, nav button.menu-trigger { font-size: 1rem; }
@@ -207,16 +207,15 @@
 
   <!-- Tap-to-open dropdown for mobile -->
   <script>
-    // Toggle the About submenu on tap/click
     const trigger = document.querySelector('button.menu-trigger');
     const parentLi = trigger.parentElement;
+
     trigger.addEventListener('click', function (e) {
       e.preventDefault();
       const isOpen = parentLi.classList.toggle('open');
       trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
-    // Close if tapping elsewhere (optional, lightweight)
     document.addEventListener('click', function (e) {
       if (!parentLi.contains(e.target)) {
         parentLi.classList.remove('open');
