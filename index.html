@@ -20,7 +20,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap; /* allow wrapping if absolutely necessary */
+      flex-wrap: wrap;
     }
     header h1 {
       font-size: 2.4rem;
@@ -28,23 +28,37 @@
       color: #1e90ff;
       white-space: nowrap;
     }
+
+    /* Top nav */
     nav ul {
       list-style: none;
       display: flex;
-      flex-direction: row; /* always row */
-      flex-wrap: nowrap;   /* prevent wrapping */
+      flex-direction: row;
+      flex-wrap: nowrap;
       gap: 16px;
     }
     nav ul li { position: relative; }
-    nav a {
+
+    /* Links and button triggers look identical */
+    nav a,
+    nav button.menu-trigger {
       text-decoration: none;
       color: #fff;
       font-size: 1.2rem;
       padding: 6px 8px;
       transition: color 0.3s;
-      white-space: nowrap; /* keep each link on one line */
+      white-space: nowrap;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font: inherit;
     }
-    nav a:hover { color: #1e90ff; }
+    nav a:hover,
+    nav button.menu-trigger:hover {
+      color: #1e90ff;
+    }
+
+    /* Dropdown */
     nav ul li ul {
       display: none;
       position: absolute;
@@ -54,10 +68,12 @@
       padding: 12px 0;
       min-width: 200px;
       border-radius: 4px;
+      z-index: 10;
     }
-    /* Dropdown opens on hover (desktop) and focus-within (mobile tap) */
-    nav ul li:hover ul,
-    nav ul li:focus-within ul {
+
+    /* Open dropdown on hover (desktop) and focus-within (mobile tap) */
+    nav ul li:hover > ul,
+    nav ul li:focus-within > ul {
       display: block;
     }
 
@@ -75,8 +91,6 @@
       margin: 40px auto;
       padding: 24px;
       line-height: 1.8;
-      background: #000;
-      color: #fff;
     }
     .bio-short h2 {
       margin: 0 0 20px;
@@ -98,13 +112,14 @@
       font-size: 1.3rem;
     }
 
-    /* Footer link images */
+    /* Footer link images in one line, equal height */
     .link-images {
       text-align: center;
       margin: 30px auto;
+      white-space: nowrap; /* keep on one line */
     }
     .link-images img {
-      height: 120px;       /* equal height for all logos */
+      height: 120px;
       width: auto;
       margin: 10px;
       display: inline-block;
@@ -118,11 +133,13 @@
         align-items: center;
       }
       nav ul {
-        flex-direction: row;   /* keep row layout */
-        flex-wrap: nowrap;     /* prevent wrapping */
-        overflow-x: auto;      /* allow horizontal scroll if too many items */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;   /* allow horizontal scroll if needed */
+        -webkit-overflow-scrolling: touch;
       }
-      nav a { font-size: 1rem; }
+      nav a,
+      nav button.menu-trigger { font-size: 1rem; }
       .bio-short h2 { font-size: 2.2rem; }
       .bio-short p { font-size: 1.2rem; }
       .link-images img { height: 90px; }
@@ -137,8 +154,10 @@
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
+
+        <!-- Button trigger for dropdown so focus-within works on phones -->
         <li>
-          <a href="#">About ▾</a>
+          <button class="menu-trigger" aria-haspopup="true" aria-expanded="false">About ▾</button>
           <ul>
             <li><a href="short-bio.html">Short Bio</a></li>
             <li><a href="long-bio.html">Long Bio</a></li>
@@ -146,6 +165,7 @@
             <li><a href="gallery.html">Gallery</a></li>
           </ul>
         </li>
+
         <li><a href="music.html">Music</a></li>
         <li><a href="store.html">Store</a></li>
         <li><a href="contact.html">Contact</a></li>
