@@ -55,7 +55,11 @@
       min-width: 200px;
       border-radius: 4px;
     }
-    nav ul li:hover ul { display: block; }
+    /* Dropdown opens on hover (desktop) and focus-within (mobile tap) */
+    nav ul li:hover ul,
+    nav ul li:focus-within ul {
+      display: block;
+    }
 
     /* Responsive media */
     img, video {
