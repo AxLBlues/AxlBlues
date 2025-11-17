@@ -13,6 +13,7 @@
       color: #fff; /* white text */
     }
 
+    /* Header */
     header {
       background: #111;
       padding: 18px 24px;
@@ -20,21 +21,17 @@
       justify-content: space-between;
       align-items: center;
     }
-
     header h1 {
       font-size: 2.4rem;
       font-weight: 900;
       color: #1e90ff; /* bright blue */
     }
-
     nav ul {
       list-style: none;
       display: flex;
       gap: 24px;
     }
-
     nav ul li { position: relative; }
-
     nav a {
       text-decoration: none;
       color: #fff;
@@ -42,10 +39,7 @@
       padding: 8px 10px;
       transition: color 0.3s;
     }
-
     nav a:hover { color: #1e90ff; }
-
-    /* Dropdown styling */
     nav ul li ul {
       display: none;
       position: absolute;
@@ -56,16 +50,21 @@
       min-width: 200px;
       border-radius: 4px;
     }
-
     nav ul li ul li { width: 100%; }
-
     nav ul li ul a {
       display: block;
       padding: 10px 14px;
       font-size: 1.3rem;
     }
-
     nav ul li:hover ul { display: block; }
+
+    /* Responsive media */
+    img, video {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
 
     /* Bio section */
     .bio-short {
@@ -95,16 +94,42 @@
       margin: 0 0 18px;
       font-size: 1.3rem;
     }
-    @media (max-width: 480px) {
+
+    /* Bottom link images */
+    .link-images {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .link-images img {
+      max-width: 150px;
+      height: auto;
+      margin: 10px;
+      display: inline-block;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+      }
+      nav ul li ul { position: static; }
       header h1 { font-size: 2rem; }
       nav a { font-size: 1.2rem; }
       .bio-short h2 { font-size: 2.2rem; }
       .bio-short p { font-size: 1.2rem; }
+      .link-images img { max-width: 120px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header>
     <h1>Axl Blues</h1>
     <nav>
@@ -125,10 +150,11 @@
     </nav>
   </header>
 
-  <main style="text-align:center; margin-top:20px;">
-    <img src="AxlBluesTitle.jpg" width="980" alt="Axl Blues Title">
+  <!-- Main content -->
+  <main>
+    <img src="AxlBluesTitle.jpg" alt="Axl Blues Title">
 
-    <video width="800" controls style="margin-top:20px;">
+    <video controls>
       <source src="title.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -144,10 +170,17 @@
       <p>In 2025, Axl legally adopted his stage name, solidifying his identity as a blues artist dedicated to carrying forward the spirit of the music that first captured him back in 1997.</p>
     </section>
 
-<div style="margin-top:30px;">
-      <a href="https://thebluestruckers.com"><img src="https://thebluestruckers.com/black-truck.png" height="200" alt="Blues Truckers"></a>
-      <a href="https://stardrivepaintings.com"><img src="http://stardrivepaintings.com/FullStardriveLogo.png" height="200" alt="Stardrive Paintings"></a>
-      <a href="https://www.facebook.com/Drewdrive72" target="_blank"><img src="fbincon.png" height="200" alt="Facebook Icon"></a>
+    <!-- Bottom link images -->
+    <div class="link-images">
+      <a href="https://thebluestruckers.com">
+        <img src="https://thebluestruckers.com/black-truck.png" alt="Blues Truckers">
+      </a>
+      <a href="https://stardrivepaintings.com">
+        <img src="http://stardrivepaintings.com/FullStardriveLogo.png" alt="Stardrive Paintings">
+      </a>
+      <a href="https://www.facebook.com/Drewdrive72" target="_blank">
+        <img src="fbincon.png" alt="Facebook Icon">
+      </a>
     </div>
   </main>
 
