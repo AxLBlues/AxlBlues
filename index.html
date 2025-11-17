@@ -5,157 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AXLBLUES.COM</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background:#000; color:#fff; font-family:system-ui; margin:0; }
 
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: #000;
-      color: #fff;
-    }
-
-    /* Header */
     header {
-      background: #111;
-      padding: 18px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+      background:#111; padding:18px 24px;
+      display:flex; justify-content:space-between; align-items:center;
     }
-    header h1 {
-      font-size: 2.4rem;
-      font-weight: 900;
-      color: #1e90ff;
-      white-space: nowrap;
-    }
+    header h1 { font-size:2.4rem; font-weight:900; color:#1e90ff; }
 
-    /* Top nav */
-    nav ul {
-      list-style: none;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      gap: 16px;
-      align-items: center;
+    nav ul { list-style:none; display:flex; gap:16px; }
+    nav ul li { position:relative; }
+    nav a, nav button {
+      background:none; border:none; cursor:pointer;
+      font:inherit; color:#fff; font-size:1.2rem;
+      padding:6px 8px; white-space:nowrap;
     }
-    nav ul li { position: relative; }
+    nav a:hover, nav button:hover { color:#1e90ff; }
 
-    nav a, nav button.menu-trigger {
-      text-decoration: none;
-      color: #fff;
-      font-size: 1.2rem;
-      padding: 6px 8px;
-      transition: color 0.3s;
-      white-space: nowrap;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font: inherit;
-    }
-    nav a:hover, nav button.menu-trigger:hover { color: #1e90ff; }
-
-    /* Dropdown menu */
     nav ul li ul {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: #222;
-      padding: 8px 0;
-      min-width: 200px;
-      border-radius: 4px;
-      z-index: 20;
+      display:none; position:absolute; top:100%; left:0;
+      background:#222; padding:8px 0; min-width:200px; border-radius:4px;
     }
-    nav ul li ul li a {
-      display: block;
-      padding: 8px 12px;
-      font-size: 1.1rem;
-      color: #fff;
-      white-space: nowrap;
-    }
-    /* Show on desktop hover */
-    nav ul li:hover > ul { display: block; }
+    nav ul li ul li a { display:block; padding:8px 12px; }
 
-    /* Responsive media */
-    img, video {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 20px auto;
-    }
+    /* show on hover (desktop) */
+    nav ul li:hover > ul { display:block; }
 
-    /* Bio section */
-    .bio-short {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 24px;
-      line-height: 1.8;
-    }
-    .bio-short h2 {
-      margin: 0 0 20px;
-      font-size: 2.6rem;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      color: #1e90ff;
-      text-align: center;
-    }
-    .bio-short .sub {
-      margin: 0 0 22px;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #cccccc;
-      text-align: center;
-    }
-    .bio-short p {
-      margin: 0 0 18px;
-      font-size: 1.3rem;
-    }
+    /* utility class for JS toggle */
+    .open > ul { display:block; }
 
-    /* Footer link images */
-    .link-images {
-      text-align: center;
-      margin: 30px auto;
-      white-space: nowrap;
-    }
-    .link-images img {
-      height: 120px;
-      width: auto;
-      margin: 10px;
-      display: inline-block;
-      vertical-align: middle;
-    }
+    img, video { max-width:100%; height:auto; display:block; margin:20px auto; }
 
-    /* Mobile adjustments */
-    @media (max-width: 600px) {
-      header { flex-direction: column; align-items: center; }
-      nav ul {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-      }
-      nav a, nav button.menu-trigger { font-size: 1rem; }
-      .bio-short h2 { font-size: 2.2rem; }
-      .bio-short p { font-size: 1.2rem; }
-      .link-images img { height: 90px; }
-    }
-
-    /* Utility class: open submenu via JS */
-    .open > ul { display: block; }
+    .link-images { text-align:center; margin:30px auto; white-space:nowrap; }
+    .link-images img { height:120px; width:auto; margin:10px; vertical-align:middle; }
   </style>
 </head>
 <body>
-
-  <!-- Header -->
   <header>
     <h1>Axl Blues</h1>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
-
-        <!-- Dropdown trigger -->
         <li>
-          <button class="menu-trigger" aria-haspopup="true" aria-expanded="false">About ▾</button>
+          <button id="about-trigger">About ▾</button>
           <ul>
             <li><a href="short-bio.html">Short Bio</a></li>
             <li><a href="long-bio.html">Long Bio</a></li>
@@ -163,7 +55,6 @@
             <li><a href="gallery.html">Gallery</a></li>
           </ul>
         </li>
-
         <li><a href="music.html">Music</a></li>
         <li><a href="store.html">Store</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -171,56 +62,27 @@
     </nav>
   </header>
 
-  <!-- Main content -->
   <main>
     <img src="AxlBluesTitle.jpg" alt="Axl Blues Title">
-
     <video controls>
       <source src="title.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
-
-    <section class="bio-short" aria-labelledby="bio-short-title">
-      <h2 id="bio-short-title">Honing the Act</h2>
-      <p class="sub">Axl Blues — Harmonica player, vocalist, performer</p>
-
-      <p>Axl Blues is a harmonica player, vocalist, and performer whose journey into the blues began in 1997, jamming scales on guitar. Inspired by The Blues Brothers in 2002, he brought his act to karaoke stages in Seattle, developing his persona and passion for live performance. In 2015, he met Dan Aykroyd and committed fully to the blues, adding harmonica to his repertoire and shaping his identity as a modern bluesman.</p>
-
-      <p>Performing across the USA, Axl has shared stages and even microphones with legendary musicians including Bobby Rush and Charlie Musselwhite, as well as Bonnie Raitt’s former guitarist, Little Richard’s late-career guitarist, and Percy Sledge’s son. His performances have spanned festivals, blues jams, and venues nationwide.</p>
-
-      <p>In 2025, Axl legally adopted his stage name, solidifying his identity as a blues artist dedicated to carrying forward the spirit of the music that first captured him back in 1997.</p>
-    </section>
-
-    <!-- Footer link images -->
     <div class="link-images">
-      <a href="https://thebluestruckers.com">
-        <img src="https://thebluestruckers.com/black-truck.png" alt="Blues Truckers">
-      </a>
-      <a href="https://stardrivepaintings.com">
-        <img src="http://stardrivepaintings.com/FullStardriveLogo.png" alt="Stardrive Paintings">
-      </a>
-      <a href="https://www.facebook.com/Drewdrive72" target="_blank">
-        <img src="fbincon.png" alt="Facebook Icon">
-      </a>
+      <a href="https://thebluestruckers.com"><img src="https://thebluestruckers.com/black-truck.png" alt="Blues Truckers"></a>
+      <a href="https://stardrivepaintings.com"><img src="http://stardrivepaintings.com/FullStardriveLogo.png" alt="Stardrive Paintings"></a>
+      <a href="https://www.facebook.com/Drewdrive72" target="_blank"><img src="fbincon.png" alt="Facebook Icon"></a>
     </div>
   </main>
 
-  <!-- Tap-to-open dropdown for mobile -->
   <script>
-    const trigger = document.querySelector('button.menu-trigger');
+    const trigger = document.getElementById('about-trigger');
     const parentLi = trigger.parentElement;
-
-    trigger.addEventListener('click', function (e) {
+    trigger.addEventListener('click', function(e) {
       e.preventDefault();
-      const isOpen = parentLi.classList.toggle('open');
-      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      parentLi.classList.toggle('open');
     });
-
-    document.addEventListener('click', function (e) {
-      if (!parentLi.contains(e.target)) {
-        parentLi.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      }
+    document.addEventListener('click', function(e) {
+      if (!parentLi.contains(e.target)) parentLi.classList.remove('open');
     });
   </script>
 </body>
