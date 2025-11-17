@@ -9,8 +9,8 @@
 
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: #000; /* black background */
-      color: #fff; /* white text */
+      background: #000;
+      color: #fff;
     }
 
     /* Header */
@@ -20,24 +20,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap; /* allow wrapping if absolutely necessary */
     }
     header h1 {
       font-size: 2.4rem;
       font-weight: 900;
-      color: #1e90ff; /* bright blue */
+      color: #1e90ff;
+      white-space: nowrap;
     }
     nav ul {
       list-style: none;
       display: flex;
-      gap: 24px;
+      flex-direction: row; /* always row */
+      flex-wrap: nowrap;   /* prevent wrapping */
+      gap: 16px;
     }
     nav ul li { position: relative; }
     nav a {
       text-decoration: none;
       color: #fff;
-      font-size: 1.4rem;
-      padding: 8px 10px;
+      font-size: 1.2rem;
+      padding: 6px 8px;
       transition: color 0.3s;
+      white-space: nowrap; /* keep each link on one line */
     }
     nav a:hover { color: #1e90ff; }
     nav ul li ul {
@@ -49,12 +54,6 @@
       padding: 12px 0;
       min-width: 200px;
       border-radius: 4px;
-    }
-    nav ul li ul li { width: 100%; }
-    nav ul li ul a {
-      display: block;
-      padding: 10px 14px;
-      font-size: 1.3rem;
     }
     nav ul li:hover ul { display: block; }
 
@@ -95,35 +94,34 @@
       font-size: 1.3rem;
     }
 
-    /* Bottom link images */
+    /* Footer link images */
     .link-images {
       text-align: center;
-      margin-top: 30px;
+      margin: 30px auto;
     }
     .link-images img {
-      max-width: 150px;
-      height: auto;
+      height: 120px;       /* equal height for all logos */
+      width: auto;
       margin: 10px;
       display: inline-block;
+      vertical-align: middle;
     }
 
     /* Mobile adjustments */
     @media (max-width: 600px) {
       header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
       }
       nav ul {
-        flex-direction: column;
-        gap: 16px;
-        width: 100%;
+        flex-direction: row;   /* keep row layout */
+        flex-wrap: nowrap;     /* prevent wrapping */
+        overflow-x: auto;      /* allow horizontal scroll if too many items */
       }
-      nav ul li ul { position: static; }
-      header h1 { font-size: 2rem; }
-      nav a { font-size: 1.2rem; }
+      nav a { font-size: 1rem; }
       .bio-short h2 { font-size: 2.2rem; }
       .bio-short p { font-size: 1.2rem; }
-      .link-images img { max-width: 120px; }
+      .link-images img { height: 90px; }
     }
   </style>
 </head>
@@ -170,7 +168,7 @@
       <p>In 2025, Axl legally adopted his stage name, solidifying his identity as a blues artist dedicated to carrying forward the spirit of the music that first captured him back in 1997.</p>
     </section>
 
-    <!-- Bottom link images -->
+    <!-- Footer link images -->
     <div class="link-images">
       <a href="https://thebluestruckers.com">
         <img src="https://thebluestruckers.com/black-truck.png" alt="Blues Truckers">
