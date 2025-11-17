@@ -9,7 +9,7 @@
     html, body { margin: 0; padding: 0; }
     body { background: #000; color: #fff; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
 
-    /* Header: stack title above the menu */
+    /* Header: title above the menu */
     header {
       background: #111;
       padding: 18px 24px;
@@ -27,10 +27,13 @@
       white-space: nowrap;
     }
 
-    /* Top navigation on one line */
-    nav {
+    /* Nav: one-line menu with safe scrolling that doesn't clip dropdowns */
+    .nav-wrap {
       width: 100%;
       max-width: 1000px;
+      overflow-x: auto;        /* horizontal scroll if needed */
+      overflow-y: visible;     /* allow dropdown to render downward */
+      -webkit-overflow-scrolling: touch;
     }
     nav ul {
       list-style: none;
@@ -42,8 +45,9 @@
       gap: 16px;
       justify-content: center;
       align-items: center;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+      position: relative;      /* stacking context for z-index */
+      z-index: 1;
     }
     nav ul li { position: relative; }
     nav a {
@@ -66,7 +70,7 @@
       padding: 8px 0;
       min-width: 200px;
       border-radius: 4px;
-      z-index: 20;
+      z-index: 1000;           /* above everything */
     }
     nav ul li ul li a {
       display: block;
@@ -75,12 +79,12 @@
       color: #fff;
       white-space: nowrap;
     }
-    /* Show on desktop hover */
+    /* Desktop hover */
     nav ul li:hover > ul { display: block; }
-    /* Show when toggled via JS */
-    .open > ul { display: block; }
+    /* Mobile/JS toggle */
+    .has-submenu.open > ul { display: block; }
 
-    /* Main media responsive */
+    /* Main media */
     img, video {
       max-width: 100%;
       height: auto;
@@ -125,7 +129,8 @@
       justify-content: center;
       align-items: center;
       gap: 16px;
-      overflow-x: auto;
+      overflow-x: auto;           /* scroll if they don’t fit */
+      overflow-y: visible;
       -webkit-overflow-scrolling: touch;
     }
     .link-images img {
@@ -148,29 +153,31 @@
 
   <header>
     <h1>Axl Blues</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
+    <div class="nav-wrap">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
 
-        <li class="has-submenu">
-          <a href="#" class="submenu-trigger">About ▾</a>
-          <ul>
-            <li><a href="short-bio.html">Short Bio</a></li>
-            <li><a href="long-bio.html">Long Bio</a></li>
-            <li><a href="timeline.html">Timeline</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-          </ul>
-        </li>
+          <li class="has-submenu">
+            <a href="#" class="submenu-trigger" aria-haspopup="true" aria-expanded="false">About ▾</a>
+            <ul>
+              <li><a href="short-bio.html">Short Bio</a></li>
+              <li><a href="long-bio.html">Long Bio</a></li>
+              <li><a href="timeline.html">Timeline</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+          </li>
 
-        <li><a href="music.html">Music</a></li>
-        <li><a href="store.html">Store</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+          <li><a href="music.html">Music</a></li>
+          <li><a href="store.html">Store</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <img src="AxlBluesTitle.jpg" alt="Axl Blues Title">
+    <img src="AxlBluesTitle.jpg" alt="Axl Blues Title" />
 
     <video controls>
       <source src="title.mp4" type="video/mp4" />
@@ -202,19 +209,26 @@
   </main>
 
   <script>
-    // Tap/Click toggle for the About dropdown
+    // Robust tap/hover behavior:
+    // - Desktop hover works via CSS.
+    // - Mobile tap toggles .open on the parent <li>.
     document.querySelectorAll('.submenu-trigger').forEach(trigger => {
       trigger.addEventListener('click', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // don't navigate "#"
         const parent = this.parentElement;
-        parent.classList.toggle('open');
+        const isOpen = parent.classList.toggle('open');
+        this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
     });
 
-    // Close submenu when clicking/tapping outside
+    // Close any open submenu when clicking/tapping outside
     document.addEventListener('click', function(e) {
       document.querySelectorAll('.has-submenu').forEach(li => {
-        if (!li.contains(e.target)) li.classList.remove('open');
+        if (!li.contains(e.target)) {
+          li.classList.remove('open');
+          const t = li.querySelector('.submenu-trigger');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        }
       });
     });
   </script>
