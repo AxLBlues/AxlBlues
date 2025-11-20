@@ -1,5 +1,157 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AXLBLUES.COM</title>
+  <style>
+    body { margin:0; background:#000; color:#fff; font-family:system-ui; }
+
+    header {
+      background:#111;
+      padding:18px 24px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+    }
+    header h1 {
+      margin:0;
+      font-size:2.4rem;
+      font-weight:900;
+      color:#1e90ff;
+      text-align:center;
+    }
+
+    nav ul {
+      list-style:none;
+      margin:0; padding:0;
+      display:flex;
+      flex-direction:row;
+      flex-wrap:nowrap;        /* keep on one line */
+      gap:16px;
+      justify-content:center;
+      align-items:center;
+      white-space:nowrap;
+    }
+    nav ul li { position:relative; }
+    nav a, nav summary {
+      color:#fff;
+      font-size:1.2rem;
+      padding:6px 8px;
+      text-decoration:none;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    nav a:hover, nav summary:hover { color:#1e90ff; }
+
+    nav details { position:relative; display:inline-block; }
+    nav summary::-webkit-details-marker { display:none; }
+
+    nav details ul {
+      position:absolute;
+      top:100%; left:0;
+      background:#222;
+      padding:8px 0;
+      min-width:200px;
+      border-radius:4px;
+      display:none;
+    }
+    nav details[open] ul { display:block; }
+    nav details ul li a {
+      display:block;
+      padding:8px 12px;
+      font-size:1.1rem;
+      color:#fff;
+    }
+    nav details ul li a:hover { background:#2b2b2b; }
+
+    img, video { max-width:100%; height:auto; display:block; margin:20px auto; }
+
+    .bio-short {
+      max-width:800px;
+      margin:40px auto;
+      padding:24px;
+      line-height:1.8;
+    }
+    .bio-short h2 {
+      margin:0 0 20px;
+      font-size:2.6rem;
+      font-weight:900;
+      color:#1e90ff;
+      text-align:center;
+    }
+    .bio-short .sub {
+      margin:0 0 22px;
+      font-size:1.4rem;
+      font-weight:600;
+      color:#ccc;
+      text-align:center;
+    }
+    .bio-short p { margin:0 0 18px; font-size:1.3rem; }
+
+    .link-images {
+      margin:30px auto;
+      display:flex;
+      flex-direction:row;
+      flex-wrap:nowrap;
+      justify-content:center;
+      gap:16px;
+    }
+    .link-images img {
+      height:120px;
+      width:auto;
+      display:block;
+    }
+
+    @media (max-width:600px) {
+      header h1 { font-size:2rem; }
+      nav a, nav summary { font-size:1rem; }
+      .bio-short h2 { font-size:2.2rem; }
+      .bio-short p { font-size:1.2rem; }
+      .link-images img { height:90px; }
+    }
+  </style>
+</head>
 <body>
-MUSIC
+
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li>
+          <details>
+            <summary>About ▾</summary>
+            <ul>
+              <li><a href="short-bio.html">Short Bio</a></li>
+              <li><a href="long-bio.html">Long Bio</a></li>
+              <li><a href="timeline.html">Timeline</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="music.html">Music</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <img src="https://axlblues.com/AxLBluesWebheader.png" alt="Axl Blues Web header" style="max-width:100%; height:auto; display:block; margin:20px auto;" />
+      
+    <section class="bio-short">
+      <h2>Available Harmonica Player</h2>
+      <p class="sub">Axl Blues — Harmonica player, vocalist, performer</p>
+      <p>Axl Blues is currently available to add some Blues Harmonica Style to your music or live band performance. Axl is working on putting his own music together at this time. But if you need a harmonica player, please hit the Contact tab above.</p>
+    </section>
+
+    <div class="link-images">
+      <a href="https://thebluestruckers.com"><img src="https://thebluestruckers.com/black-truck.png" alt="Blues Truckers" /></a>
+      <a href="https://stardrivepaintings.com"><img src="http://stardrivepaintings.com/FullStardriveLogo.png" alt="Stardrive Paintings" /></a>
+      <a href="https://www.facebook.com/Drewdrive72" target="_blank"><img src="fbincon.png" alt="Facebook Icon" /></a>
+    </div>
+  </main>
+
 </body>
 </html>
